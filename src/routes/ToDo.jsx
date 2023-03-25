@@ -5,7 +5,6 @@ import SideNavbar from "../Components/SideNavbar";
 import { userContext } from "../Context/UserProvider";
 
 const ToDo = () => {
-  // useContext is used to get data from a context, which is passed as an argument to useContext. Here, we are getting dataArr from the userContext.
   const { dataArr } = useContext(userContext);
   
   return (
@@ -18,7 +17,6 @@ const ToDo = () => {
           <Navbar />
           <hr />
           
-          {/* If dataArr is falsy (undefined, null, false, 0, ""), display a loading animation, otherwise display the content. */}
           {!dataArr ? (
             <div>
               <img

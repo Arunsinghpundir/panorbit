@@ -17,7 +17,6 @@ const Posts = () => {
           <hr/>
           {!dataArr ?
             (<div><img className='w-[30rem]' style={{ margin: "auto" }} src="https://cdn.dribbble.com/users/148670/screenshots/5252136/media/e7019e9ad90430ab0e796f38c8c7baa0.gif" alt="loading" /></div>) : (
-
               <div className="mt-4 p-8">
                 <div className="text-center font-bold text-gray-400 text-[5rem] opacity-25 p-40">
                   Coming Soon

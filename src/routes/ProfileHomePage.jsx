@@ -1,33 +1,29 @@
-import React, { useState, useEffect } from 'react'; // import React, useState and useEffect from the react library
-import { useParams } from 'react-router-dom'; // import useParams from react-router-dom
-import axios from 'axios'; // import axios library for making API requests
-import Navbar from "../Components/Navbar" // import Navbar component
-import SideNavbar from '../Components/SideNavbar'; // import SideNavbar component
-import Chat from '../Components/ChatPage'; // import Chat component
+import React, { useState, useEffect } from 'react'; 
+import { useParams } from 'react-router-dom'; 
+import axios from 'axios';
+import Navbar from "../Components/Navbar" 
+import SideNavbar from '../Components/SideNavbar'; 
+import Chat from '../Components/ChatPage'; 
 
-const ProfileHomePage = () => { // create a functional component named ProfileHomePage
-  const { userId } = useParams(); // use the useParams hook to get the userId parameter from the URL
-  const [user, setUser] = useState(null); // declare a state variable called user and initialize it to null using useState hook
+const ProfileHomePage = () => { 
+  const { userId } = useParams(); 
+  const [user, setUser] = useState(null); 
 
-  useEffect(() => { // use the useEffect hook to perform side effects in the component
-    const fetchUser = async () => { // declare an async function named fetchUser
-      const res = await axios.get(`https://drab-blue-shark-robe.cyclic.app/users/${userId}`); // make a GET request to the API endpoint with the userId parameter and store the response in a variable called res
-      setUser(res.data); // update the user state variable with the data from the API response
+  useEffect(() => { 
+    const fetchUser = async () => {
+      const res = await axios.get(`https://drab-blue-shark-robe.cyclic.app/users/${userId}`); 
+      setUser(res.data); 
     };
-    fetchUser(); // call the fetchUser function
-  }, [userId]); // run the effect only when the userId parameter changes
+    fetchUser(); 
+  }, [userId]); 
 
-  localStorage.setItem("userData", JSON.stringify(user)) // store the user data in the localStorage with the key "userData"
-  // console.log("data" , user);
-  const dataArr = JSON.parse(localStorage.getItem("userData")) // retrieve the user data from localStorage and parse it as JSON
-
-  if (!dataArr) { // if the dataArr is falsy, render a loading spinner
+  localStorage.setItem("userData", JSON.stringify(user)) 
+  const dataArr = JSON.parse(localStorage.getItem("userData")) 
+  if (!dataArr) { 
     return <div>
       <img className='w-[30rem]' style={{ margin: "auto" }} src="https://cdn.dribbble.com/users/148670/screenshots/5252136/media/e7019e9ad90430ab0e796f38c8c7baa0.gif" alt="loading" /></div>;
   }
-
-
-  return (  // render the component UI
+  return (  
     <>
       <div >
         <div className=' flex '>

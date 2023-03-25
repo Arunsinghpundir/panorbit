@@ -1,37 +1,25 @@
-// Import necessary modules
 import React, { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { userContext } from "../Context/UserProvider";
 
-// Define the Navbar component
 const Navbar = () => {
-  // Define necessary state and context variables
   const navigate = useNavigate();
   const { users } = useContext(userContext);
   const location = useLocation()
   const [open, setOpen] = useState(false);
 
-  // This function is called when the user clicks on their name in the navbar
   const handleOpenNavbar = () => {
     setOpen(!open);
   };
 
-  // Retrieve user data from localStorage
   const dataArr = JSON.parse(localStorage.getItem("userData"));
-
-  // This function is called when the user clicks the "Sign out" button
   const handleSignOut = () => {
-    // remove data from localStorage
     localStorage.removeItem("userData");
-    // Navigate to home page
     navigate("/");
   };
 
-  // Render the Navbar component
-
   return (
     <nav className="bg-white text-gray-600 py-4 flex justify-between items-center">
-      {/* Link to home page */}
       <Link to="#" className="text-xl font-semibold">
         {location.pathname === `/profile/${dataArr.id}` ? "Profile" : ""}
         {location.pathname === `/profile/posts` ? "Posts" : ""}
@@ -40,7 +28,6 @@ const Navbar = () => {
       </Link>
 
       <div className="flex items-center">
-        {/* User profile picture */}
         <div className="mr-4">
           <img
             src={dataArr.profilepicture}
@@ -49,7 +36,6 @@ const Navbar = () => {
           />
         </div>
 
-        {/* Display user name and dropdown menu on larger screens */}
         <div className="hidden md:block">
           <div className="relative">
             <button
@@ -58,8 +44,6 @@ const Navbar = () => {
             >
               <span className="mr-2">{dataArr.name}</span>
             </button>
-
-            {/* Dropdown menu */}
             {open ? (
               <div
                 style={{
@@ -68,7 +52,6 @@ const Navbar = () => {
                 }}
                 className="absolute top-10 right-0 bg-white rounded-lg shadow-md p-4 w-[19rem] z-10"
               >
-                {/* User information */}
                 <div className="block">
                   <img
                     src={dataArr.profilepicture}
@@ -82,7 +65,6 @@ const Navbar = () => {
                 </div>
                 <hr />
 
-                {/* List of other users */}
                 {users.slice(0, 3).map((user) => (
                   <li key={user.id} className=" mt-4 list-none ">
                     <div className="flex items-center pb-[5px] bg-white">
@@ -99,7 +81,6 @@ const Navbar = () => {
                   </li>
                 ))}
 
-                {/* Sign out button */}
                 <div className="block mt-1">
                   <button
                     onClick={handleSignOut}
