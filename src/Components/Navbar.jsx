@@ -65,7 +65,7 @@ const Navbar = () => {
                 </div>
                 <hr />
 
-                {users.slice(0, 3).map((user) => (
+                {users.users.slice(0, 3).map((user) => (
                   <li key={user.id} className=" mt-4 list-none ">
                     <div className="flex items-center pb-[5px] bg-white">
                       <img
