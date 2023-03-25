@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import homePageImg from "../assets/home.png";
 import LandingLoading from "../Components/LandingLoading";
@@ -6,6 +6,11 @@ import { userContext } from "../Context/UserProvider";
 
 const LandingPage = () => {
   const { users, isloading } = useContext(userContext);
+  const [user, setUser] = useState([]);
+  console.log(users.users)
+  useEffect(()=>{
+    setUser(users.users || [])
+  },[users])
   return (
 
     <div
@@ -36,7 +41,7 @@ const LandingPage = () => {
               <div className="p-8 overflow-y-auto h-[28rem] scrollbar-thin">
 
                 
-                {users.users.length !== [] && users.users.map((user) => {
+                { user.map((user) => {
                     return <li key={user.id} className="mb-4 list-none ">
                       <Link
                         to={`/profile/${user.id}`}
