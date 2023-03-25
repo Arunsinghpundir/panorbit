@@ -3,6 +3,7 @@
 }
 
 .indicator {
+  display: none;
   position: absolute;
   left: 306px;
   height: 2rem;
@@ -22,7 +23,6 @@
   box-shadow: 5px 4px 0px 0px white;
   background-color: #673ec7;
   border-bottom-right-radius: 1rem;
-
 }
 
 .indicator::after {
